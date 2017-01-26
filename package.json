@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "eslint": "^3.10.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-react": "^6.7.1",
+    "express": "^4.14.0",
+    "mongoose": "^4.6.8",
+    "paypal-express-checkout": "^1.5.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-jsx-a11y": "^3.0.1"
+  },
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "test": "docker-compose -f docker-compose.debug.yml up -d && DEBUG=1 nodemon api/index"
+  }
+}

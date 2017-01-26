@@ -1,0 +1,20 @@
+{
+	"products": [],
+	"details": {
+		"_id": "",
+		"nom": "",
+		"desc": "",
+		"stock": 10,
+		"thumbnail": "http://vignette2.wikia.nocookie.net/uncyclopedia/images/4/44/White_square.png/revision/latest?cb=20061003200043",
+		"__v": 0,
+		"cat": [],
+		"tags": [],
+		"updated": "",
+		"ratings": [],
+		"price": {
+			"currency": "",
+			"value": 0
+		}
+	},
+	"cats": []
+}
