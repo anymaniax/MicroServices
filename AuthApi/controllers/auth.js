@@ -55,39 +55,32 @@ module.exports.auth = (req, res) => {
             }
         });
     } else {
-        let password = config.password
-        bcrypt.genSalt(config.salt, function (err, salt) {
-            bcrypt.hash(password, salt, function (err, hash) {
-                req.body.hash=hash
-                request.post(config.UsersApi + "/" + req.body.username, {
-                    json: req.body
-                }, function (error, response, body) {
-                    if (error) {
-                        console.log(error)
-                        res.status(500)
-                        return res.json({
-                            error: "An unexpect error happened"
-                        })
-                    }
-                    if (!error && response.statusCode == 200) {
-                        genJWT(body.ByUser, token => {
-                            res.status(200)
-                            res.json({
-                                success: true,
-                                message: 'Enjoy your token!',
-                                token: token
-                            });
-                        })
-                    } else {
-                        res.status(406)
-                        res.json({
-                            success: false,
-                            message: 'Authentication failed.'
-                        });
-                    }
-
+        request.post(config.UsersApi + "/" + req.body.username, {
+            json: req.body
+        }, function (error, response, body) {
+            if (error) {
+                console.log(error)
+                res.status(500)
+                return res.json({
+                    error: "An unexpect error happened"
+                })
+            }
+            if (!error && response.statusCode == 200) {
+                genJWT(body.ByUser, token => {
+                    res.status(200)
+                    res.json({
+                        success: true,
+                        message: 'Enjoy your token!',
+                        token: token
+                    });
+                })
+            } else {
+                res.status(406)
+                res.json({
+                    success: false,
+                    message: 'Authentication failed.'
                 });
-            })
+            }
         });
     }
 }

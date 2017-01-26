@@ -1,0 +1,21 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NAME=DevServer nodemon index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "eslint": "^3.10.1",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^7.1.9",
+    "mongoosastic": "^4.2.1",
+    "mongoose": "^4.6.6",
+    "morgan": "^1.7.0",
+    "paypal-express-checkout": "^1.5.0",
+    "request": "^2.79.0"
+  }
+}

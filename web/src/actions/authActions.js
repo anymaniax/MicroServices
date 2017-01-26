@@ -53,7 +53,7 @@ export function finishLoading(){
 export function fetchToken(username, password){
 	return function(dispatch){
 		dispatch(startLoading())
-		return fetch(`${conf.AuthApi}auth/`, {
+		return fetch(`${conf.uri}auth/`, {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
@@ -87,7 +87,7 @@ export function register(user){
 	return function(dispatch){
 		dispatch(startLoading())
 
-		return fetch(`${conf.UserApi}users/`, {
+		return fetch(`${conf.uri}users/`, {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
@@ -124,7 +124,7 @@ export function passwordUpdateFailure(){
 export function changePassword(id, password, newPassword, token){
 	return function(dispatch){
 		dispatch(startLoading())
-		return fetch(`${conf.UserApi}users/pass/${id}`, {
+		return fetch(`${conf.uri}users/pass/${id}`, {
 			method: 'POST',
 			headers: {
                 'Accept': 'application/json',

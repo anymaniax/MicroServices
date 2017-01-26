@@ -1,7 +1,6 @@
 require('../models/db')
 
 let request = require('request')
-let bcrypt = require('bcryptjs');
 
 module.exports.requireId = (req, res, next) => {
     let headers = {
@@ -56,20 +55,6 @@ module.exports.requireAdmin = (req, res, next) => {
             return res.json({
                 success: false,
                 message: 'Failed to Authentication token.'
-            });
-        }
-    });
-}
-
-module.exports.requireServer = (req, res, next) => {
-    let hash = req.body.hash
-    bcrypt.compare(Password, hash, function (err, res) {
-        if (res) {
-            return next();
-        } else {
-            return res.json({
-                success: false,
-                message: 'Failed to Authentication.'
             });
         }
     });

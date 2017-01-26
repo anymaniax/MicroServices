@@ -43,7 +43,7 @@ export function confirmAndCreatePaypalCart(cart, uid, token){
 export function getPayementURI(cart, uid, token){
     return function(dispatch){
         dispatch(startLoading())
-        return fetch(`${conf.PayApi}pay/${uid}`, {
+        return fetch(`${conf.uri}pay/${uid}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -69,7 +69,7 @@ export function getPayementURI(cart, uid, token){
 export function getTransactionDetails(transactionId, token){
     return function(dispatch){
         dispatch(startLoading())
-        return fetch(`${conf.PayApi}pay/payements/${transactionId}`, {
+        return fetch(`${conf.uri}pay/payements/${transactionId}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

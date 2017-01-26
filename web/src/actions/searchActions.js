@@ -26,7 +26,7 @@ function emptySearch(){
 
 export function searchProduct(params){
 	return function(dispatch){
-		return fetch(`${conf.ProductApi}products/search/`+params, {
+		return fetch(`${conf.uri}products/search/`+params, {
 			method: 'GET'
 		})
 		.then(response => response.json())

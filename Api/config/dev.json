@@ -1,0 +1,6 @@
+{
+	"UserApi": "http://localhost:5001/api/v1/users/",
+	"AuthApi": "http://localhost:5002/api/v1/auth/",
+    "ProductApi": "http://localhost:5003/api/v1/",
+    "PayApi":"http://localhost:5004/api/v1/pay/"
+}

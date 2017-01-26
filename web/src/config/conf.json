@@ -1,6 +1,3 @@
 {
-	"ProductApi": "http://localhost:5000/api/v1/",
-	"UserApi": "http://localhost:5001/api/v1/",
-	"AuthApi": "http://localhost:5002/api/v1/",
-	"PayApi":"http://localhost:5003/api/v1/"
+	"uri": "http://localhost:5000/api/v1/"
 }

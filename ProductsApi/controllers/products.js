@@ -22,6 +22,7 @@ module.exports.getAll = (req, res) => {
 				err: "An unexpect error happened"
 			})
 		}
+		res.status(200)
 		return res.json(products)
 	})
 }
@@ -29,6 +30,7 @@ module.exports.getAll = (req, res) => {
 module.exports.getById = (req, res) => {
 	Product.findById(req.params.id, (err, product) => {
 		if (product) {
+			res.status(200)
 			return res.json(product)
 		}
 
@@ -61,7 +63,7 @@ module.exports.addProduct = (req, res) => {
 					})
 				}
 
-				res.status(201)
+				res.status(200)
 				return res.send({
 					id: product._id,
 					link: `http://localhost:${PORT}/api/v1/products/${product.id}`
@@ -81,9 +83,9 @@ module.exports.delProduct = (req, res) => {
 				error: 'Could not remove this product :('
             })
 		}
-
-		res.status(204)
+		res.status(200)
 		res.json({
+			success: true,
 			message: 'Product deleted with success'
 		})
 	})

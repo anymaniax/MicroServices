@@ -6,7 +6,7 @@ let app = express()
 
 let pay = require('./routes/pay')
 let err404 = require('./routes/err404')
-const PORT = process.env.PORT || 5003
+const PORT = process.env.PORT || 5004
 const NAME = process.env.NAME || "Pay API"
 
 app.use(logger('dev'))

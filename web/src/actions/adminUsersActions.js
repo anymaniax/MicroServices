@@ -25,7 +25,7 @@ export function fetchUserList(token){
 
 export function deleteUser(id, token){
     return function(dispatch){
-        return fetch(`${conf.UserApi}users/${id}?token=${token}`, {
+        return fetch(`${conf.uri}users/${id}?token=${token}`, {
             method: 'delete'
         }).then(response => {
             response.json().then(res => console.log(res))
@@ -36,7 +36,7 @@ export function deleteUser(id, token){
 
 export function makeAdmin(id, token){
     return function(dispatch){
-        return fetch(`${conf.UserApi}users/admins`, {
+        return fetch(`${conf.uri}users/admins`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export function makeAdmin(id, token){
 
 export function removeAdmin(id, token){
     return function(dispatch){
-        return fetch(`${conf.UserApi}users/admins`, {
+        return fetch(`${conf.uri}users/admins`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ function fetchCatsSuccess(categories){
 
 export function fetchCategories(){
     return function(dispatch){
-        return fetch(`${conf.ProductApi}cats/details`)
+        return fetch(`${conf.uri}cats/details`)
             .then(response => response.json())
             .then(({cats}) => dispatch(fetchCatsSuccess(cats)))
     }
@@ -89,7 +89,7 @@ export function fetchCategories(){
 export function deleteCategory(id, token){
     console.log(id);
     return function(dispatch){
-        return fetch(`${conf.ProductApi}cats/${id}?token=${token}`, {
+        return fetch(`${conf.uri}cats/${id}?token=${token}`, {
             method: 'delete',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export function deleteCategory(id, token){
 
 export function addCategory(nom, token){
     return function(dispatch){
-        return fetch(`${conf.ProductApi}cats/?token=${token}`, {
+        return fetch(`${conf.uri}cats/?token=${token}`, {
             method: 'POST',
             headers: new Headers({
                 'Content-Type': 'application/json',

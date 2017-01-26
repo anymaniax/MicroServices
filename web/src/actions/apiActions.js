@@ -35,7 +35,7 @@ function receiveCategories(cats){
 
 export function fetchAll(){
 	return function(dispatch){
-		return fetch(`${conf.ProductApi}products`)
+		return fetch(`${conf.uri}products`)
 			.then(response => response.json())
 			.then(products => dispatch(receiveProducts(products)))
 	}
@@ -43,7 +43,7 @@ export function fetchAll(){
 
 export function fetchById(id){
 	return function(dispatch){
-		return fetch(`${conf.ProductApi}products/${id}`)
+		return fetch(`${conf.uri}products/${id}`)
 			.then(response => response.json())
 			.then(details => dispatch(receiveDetails(details)))
 	}
@@ -52,8 +52,13 @@ export function fetchById(id){
 
 export function deleteProduct(id, token, cat = 'all'){
     return function(dispatch){
-        return fetch(`${conf.ProductApi}products/${id}?token=${token}`, {
-        	method: 'DELETE'
+        return fetch(`${conf.uri}products/${id}`, {
+        	method: 'DELETE',
+			headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            }
 		}).then(response => {
 			if(response.status === 204){
 				if(cat === 'all'){
@@ -82,7 +87,7 @@ function productUpdateFailure(){
 
 export function updateProduct(product, token){
 	return function(dispatch){
-		return fetch(`${conf.ProductApi}products/${product._id}`, {
+		return fetch(`${conf.uri}products/${product._id}`, {
 			method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -103,7 +108,7 @@ export function updateProduct(product, token){
 
 export function fetchCats(){
 	return function(dispatch){
-		return fetch(`${conf.ProductApi}cats/`)
+		return fetch(`${conf.uri}cats/`)
 			.then(response => response.json())
 			.then(cats => dispatch(receiveCategories(cats)))
 	}
@@ -111,7 +116,7 @@ export function fetchCats(){
 
 export function fetchProductsByCat(cat){
 	return function(dispatch){
-		return fetch(`${conf.ProductApi}cats/${cat}`)
+		return fetch(`${conf.uri}cats/${cat}`)
 			.then(response => response.json())
 			.then(products => dispatch(receiveProducts(products)))
 	}
@@ -127,7 +132,7 @@ export function receivedPayements(payements){
 
 export function fetchPayements(id, token){
 	return function(dispatch){
-		return fetch(`${conf.PayApi}pay/payements/user/${id}`, {
+		return fetch(`${conf.uri}pay/payements/user/${id}`, {
 			method: 'GET',
             headers: {
                 'Accept': 'application/json',

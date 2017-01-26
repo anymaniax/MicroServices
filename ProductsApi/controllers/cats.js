@@ -25,6 +25,7 @@ module.exports.getAll = (req, res) => {
 		for (let cat of cats) {
 			categories.push(cat.nom)
 		}
+		res.status(200)
 		return res.json(categories)
 	})
 }
@@ -46,6 +47,7 @@ module.exports.getAllWithDetails = (req, res) => {
 			})
 		}
 
+		res.status(200)
 		res.json({
 			cats
 		})
@@ -53,6 +55,7 @@ module.exports.getAllWithDetails = (req, res) => {
 }
 
 module.exports.addCat = (req, res) => {
+	console.log("test");
 	Cat.findOne({
 		'nom': req.body.nom
 	}, (err, cats) => {
@@ -103,7 +106,7 @@ module.exports.getByCat = (req, res) => {
 				err: "An unexpected error happened"
 			})
 		}
-
+		res.status(200)
 		return res.json(products)
 	})
 }
@@ -111,8 +114,14 @@ module.exports.getByCat = (req, res) => {
 module.exports.deleteCatCascade = (req, res) => {
 	Cat.findOneAndRemove({
 		'_id': req.params.id
-	}, () => {
-		res.status(204)
+	}, (err, cat) => {
+		if(err){
+			res.status(500)
+			return res.json({
+				err: "An unexpected error happened"
+			})
+		}
+		res.status(200)
 		res.json({
 			success: true,
 			message: 'category deleted with success'

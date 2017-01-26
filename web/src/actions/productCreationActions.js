@@ -20,7 +20,7 @@ function productCreationFailure(error){
 
 export function createProduct(params, token){
 	return function(dispatch){
-		return fetch(`${conf.ProductApi}products/`, {
+		return fetch(`${conf.uri}products/`, {
 			method: 'POST',
 			headers: new Headers({
 				'Content-Type': 'application/json',
