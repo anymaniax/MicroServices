@@ -1,0 +1,10 @@
+{
+    "uri": "mongodb://localhost:27002/payApi",
+    "paypal":{
+        "username":"victor-bury-facilitator_api1.hotmail.com",
+        "password":"4GHKS42K84PM3GS6",
+        "signature":"AFcWxV21C7fd0v3bYYYRCpSSRl31AzNdGFDY.mnpHH5Z5mT.QORLxTtI"
+    },
+    "productApi":"http://localhost:5000/api/v1/products",
+    "authApi":"http://localhost:5002/api/v1/auth"
+}

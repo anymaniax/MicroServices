@@ -20,7 +20,6 @@ module.exports.requireId = (req, res, next) => {
         if (!error && response.statusCode == 200) {
             let auth = JSON.parse(body)
             if (auth.success) {
-                console.log("test");
                 return next()
             }
         } else {
@@ -50,7 +49,6 @@ module.exports.requireAdmin = (req, res, next) => {
         if (!error && response.statusCode == 200) {
             let auth = JSON.parse(body)
             if (auth.success) {
-                console.log("test");
                 return next()
             }
         } else {

@@ -19,6 +19,7 @@
     "start": "node app.js",
     "users": "docker-compose -f docker-compose.debug.yml up -d && DEBUG=1 nodemon UsersApi/index",
     "auth": "DEBUG=1 nodemon AuthApi/index",
-    "product": "DEBUG=1 nodemon ProductsApi/index"
+    "product": "DEBUG=1 nodemon ProductsApi/index",
+    "pay":"DEBUG=1 nodemon PayApi/index"
   }
 }

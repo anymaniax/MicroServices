@@ -127,7 +127,7 @@ export function receivedPayements(payements){
 
 export function fetchPayements(id, token){
 	return function(dispatch){
-		return fetch(`${conf.url}pay/payements/user/${id}`, {
+		return fetch(`${conf.PayApi}pay/payements/user/${id}`, {
 			method: 'GET',
             headers: {
                 'Accept': 'application/json',

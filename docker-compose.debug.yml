@@ -15,3 +15,7 @@ services:
     image: mongo
     ports:
       - 27001:27017
+   PayDB:
+    image: mongo
+    ports:
+      - 27002:27017
