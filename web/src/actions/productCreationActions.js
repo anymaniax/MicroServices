@@ -20,10 +20,11 @@ function productCreationFailure(error){
 
 export function createProduct(params, token){
 	return function(dispatch){
-		return fetch(`${conf.url}products?token=${token}`, {
+		return fetch(`${conf.ProductApi}products/`, {
 			method: 'POST',
 			headers: new Headers({
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+				'x-access-token':token
 			}),
 			body: JSON.stringify(params)
 		})

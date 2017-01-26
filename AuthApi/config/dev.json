@@ -1,0 +1,6 @@
+{
+    "secret": "DONALDTRUMP",
+    "salt": 12,
+    "UsersApi":"http://localhost:5001/api/v1/users",
+    "password":"DONNY"
+}

@@ -35,7 +35,7 @@ function receiveCategories(cats){
 
 export function fetchAll(){
 	return function(dispatch){
-		return fetch(`${conf.url}products`)
+		return fetch(`${conf.ProductApi}products`)
 			.then(response => response.json())
 			.then(products => dispatch(receiveProducts(products)))
 	}
@@ -43,7 +43,7 @@ export function fetchAll(){
 
 export function fetchById(id){
 	return function(dispatch){
-		return fetch(`${conf.url}products/${id}`)
+		return fetch(`${conf.ProductApi}products/${id}`)
 			.then(response => response.json())
 			.then(details => dispatch(receiveDetails(details)))
 	}
@@ -52,7 +52,7 @@ export function fetchById(id){
 
 export function deleteProduct(id, token, cat = 'all'){
     return function(dispatch){
-        return fetch(`${conf.url}products/${id}?token=${token}`, {
+        return fetch(`${conf.ProductApi}products/${id}?token=${token}`, {
         	method: 'DELETE'
 		}).then(response => {
 			if(response.status === 204){
@@ -82,7 +82,7 @@ function productUpdateFailure(){
 
 export function updateProduct(product, token){
 	return function(dispatch){
-		return fetch(`${conf.url}products/${product._id}`, {
+		return fetch(`${conf.ProductApi}products/${product._id}`, {
 			method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -103,7 +103,7 @@ export function updateProduct(product, token){
 
 export function fetchCats(){
 	return function(dispatch){
-		return fetch(`${conf.url}cats/`)
+		return fetch(`${conf.ProductApi}cats/`)
 			.then(response => response.json())
 			.then(cats => dispatch(receiveCategories(cats)))
 	}
@@ -111,7 +111,7 @@ export function fetchCats(){
 
 export function fetchProductsByCat(cat){
 	return function(dispatch){
-		return fetch(`${conf.url}cats/${cat}`)
+		return fetch(`${conf.ProductApi}cats/${cat}`)
 			.then(response => response.json())
 			.then(products => dispatch(receiveProducts(products)))
 	}

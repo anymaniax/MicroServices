@@ -1,3 +1,5 @@
 {
-	"url": "http://localhost:5000/api/v1/"
+	"ProductApi": "http://localhost:5000/api/v1/",
+	"UserApi": "http://localhost:5001/api/v1/",
+	"AuthApi": "http://localhost:5002/api/v1/"
 }

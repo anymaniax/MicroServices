@@ -1,0 +1,5 @@
+{
+    "secret": "DONALDTRUMP",
+    "salt": 12,
+    "UsersAPi":"http://UsersApi:5001/api/v1/users"
+}

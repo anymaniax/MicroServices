@@ -1,0 +1,7 @@
+{
+    "uri": "mongodb://localhost:27000/ProductsApi",
+    "es": "http://localhost:9200/",
+    "salt": 12,
+    "password":"DONNY",
+    "AuthApi":"http://localhost:5002/api/v1/auth"
+}
