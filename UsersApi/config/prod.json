@@ -1,5 +1,5 @@
 {
-    "uri": "mongodb://db:27017/e-commerce",
+    "uri": "mongodb://userdb:27017/UsersApi",
     "secret": "DONALDTRUMP",
     "salt": 12,
     "admin": {
@@ -18,5 +18,6 @@
             "postalCode": "0",
             "country": "a"
         }
-    }
+    },
+    "AuthApi":"http://auth:5002/api/v1/auth"
 }

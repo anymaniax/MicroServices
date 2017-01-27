@@ -1,7 +1,6 @@
 {
     "uri": "mongodb://localhost:27001/UsersApi",
     "salt": 12,
-    "password":"DONNY",
     "admin": {
         "lastname": "a",
         "firstname": "a",

@@ -1,13 +1,6 @@
 version: '2'
 
 services:
-  nginx:
-    image: api-nginx:latest
-    build:
-      context: .
-      dockerfile: nginx/Dockerfile
-    ports:
-      - 5000:5000
   api:
     image: api:latest
     build:
@@ -16,40 +9,56 @@ services:
     environment:
       NODE_ENV: production 
     ports:
-      - 8080:5000
+      - 5000:5000
     links:
-      - db
-      - es
-  api2:
-    image: api:latest
+      - auth
+      - pay
+      - user
+      - product
+  auth:
+    image: auth:latest
     build:
       context: .
-      dockerfile: api/Dockerfile
+      dockerfile: AuthApi/Dockerfile
     environment:
       NODE_ENV: production 
-    ports:
-      - 8082:5000
-    links:
-      - db
-      - es
-  api3:
-    image: api:latest
+  pay:
+    image: pay:latest
     build:
       context: .
-      dockerfile: api/Dockerfile
+      dockerfile: PayApi/Dockerfile
     environment:
       NODE_ENV: production 
-    ports:
-      - 8081:5000
     links:
-      - db
+      - auth
+      - product
+      - paydb
+  user:
+    image: user:latest
+    build:
+      context: .
+      dockerfile: UsersApi/Dockerfile
+    environment:
+      NODE_ENV: production 
+    links:
+      - auth
+      - userdb
+  product:
+    image: product:latest
+    build:
+      context: .
+      dockerfile: ProductsApi/Dockerfile
+    environment:
+      NODE_ENV: production 
+    links:
+      - auth
+      - productdb
       - es
-  db:
+  productdb:
     image: mongo
-    ports:
-      - 27017:27017
+  userdb:
+    image: mongo
+  paydb:
+    image: mongo
   es:
     image: elasticsearch:2.4
-    ports:
-      - 9200:9200
-      - 9300:9300

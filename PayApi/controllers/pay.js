@@ -13,7 +13,7 @@ module.exports.pay = (req, res) => {
     if (cart) {
         if (req.params.id) {
             for (let prod of cart) {
-                request.get(ProductApi + "/" + prod.id, function (error, response, body) {
+                request.get(ProductApi + "products/" + prod.id, function (error, response, body) {
                     if (!error && response.statusCode == 200) {
                         let product = JSON.parse(body)
                         if (product) {

@@ -46,8 +46,8 @@ process.on('SIGTERM', () => {
 })
 
 InfoPaypal = config.paypal
-ProductApi = config.productApi
-AuthApi = config.authApi
+ProductApi = config.ProductApi
+AuthApi = config.AuthApi
 
 //Schemas
 Transaction = require('./transaction')

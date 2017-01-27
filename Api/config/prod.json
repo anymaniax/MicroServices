@@ -1,28 +1,6 @@
 {
-    "uri": "mongodb://db:27017/e-commerce",
-    "es": "",
-    "secret": "DONALDTRUMP",
-    "salt": 12,
-    "admin": {
-        "lastname": "a",
-        "firstname": "a",
-        "username": "admin",
-        "password": "bigadmin",
-        "email": "victor-bury@hotmail.com",
-        "role":"admin",
-        "sex": "M",
-        "phone": "0",
-        "address": {
-            "street": "a",
-            "number": "0",
-            "town": "a",
-            "postalCode": "0",
-            "country": "a"
-        }
-    },
-    "paypal":{
-        "username":"victor-bury-facilitator_api1.hotmail.com",
-        "password":"4GHKS42K84PM3GS6",
-        "signature":"AFcWxV21C7fd0v3bYYYRCpSSRl31AzNdGFDY.mnpHH5Z5mT.QORLxTtI"
-    }
+    "UserApi": "http://user:5001/api/v1/users/",
+	"AuthApi": "http://auth:5002/api/v1/auth/",
+    "ProductApi": "http://product:5003/api/v1/",
+    "PayApi":"http://pay:5004/api/v1/pay/"
 }

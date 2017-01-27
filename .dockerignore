@@ -3,6 +3,10 @@
 .editorconfig
 node_modules
 api/node_modules
-web-client/node_modules
+AuthApi/node_modules
+PayApi/node_modules
+ProductsApi/node_modules
+UsersApi/node_modules
+web/node_modules
 *.log
 *.md
