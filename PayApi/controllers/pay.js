@@ -50,7 +50,7 @@ module.exports.pay = (req, res) => {
                                             error: "Could not create this transaction"
                                         })
                                     }
-                                    let paypal = Paypal.init(InfoPaypal.username, InfoPaypal.password, InfoPaypal.signature, 'http://localhost:5004/api/v1/pay/valid/' + transaction._id, 'http://localhost:5004/api/v1/pay/valid/' + transaction._id, true);
+                                    let paypal = Paypal.init(InfoPaypal.username, InfoPaypal.password, InfoPaypal.signature, 'http://localhost:5000/api/v1/pay/valid/' + transaction._id, 'http://localhost:5000/api/v1/pay/valid/' + transaction._id, true);
                                     paypal.pay(transaction._id, transaction.amount, desc, 'EUR', true, function (err, url) {
                                         if (err) {
                                             console.log(err)
@@ -93,6 +93,7 @@ module.exports.pay = (req, res) => {
 module.exports.valid = (req, res) => {
     if (req.params.id) {
         let query = req.query
+        console.log(query);
         if (query.PayerID && query.token) {
             let paypal = Paypal.init(InfoPaypal.username, InfoPaypal.password, InfoPaypal.signature, 'http://localhost:3000/', 'http://localhost:3000/', true);
             paypal.detail(query.token, query.PayerID, function (err, data, invoiceNumber, price) {
@@ -125,8 +126,11 @@ module.exports.valid = (req, res) => {
                                 res.redirect('http://localhost:3000/checkout/error')
                             }
                             transaction.remove();
-                            res.status(204)
-                            res.redirect(`http://localhost:3000/checkout/success/${pay._id}`)
+                            res.status(200)
+                            res.status(200)
+                            res.json({
+                                success: true
+                            })
                         })
                     })
                 } else {
@@ -155,8 +159,10 @@ module.exports.valid = (req, res) => {
                     res.redirect('http://localhost:3000/checkout/error')
                 }
 
-                res.status(204)
-                res.redirect('http://localhost:3000/checkout/error')
+                res.status(200)
+                res.json({
+                    success: false
+                })
             })
         } else {
             return res.json({
