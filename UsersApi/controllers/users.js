@@ -1,12 +1,19 @@
 require('../models/db')
 
+let config
+if (process.env.DEBUG == 1) {
+    config = require('../config/dev')
+} else {
+    config = require('../config/prod')
+}
+
 let User = require('../models/user')
 let bcrypt = require('bcryptjs');
+let request = require('request')
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5001
 
 module.exports.getAll = (req, res) => {
-    console.log("test");
     User.find((err, users) => {
         if (!users) {
             res.status(404)
@@ -177,13 +184,33 @@ module.exports.addUser = (req, res) => {
                                 error: "Could not create this user"
                             })
                         }
-                        Auth.genJWT(user, token => {
-                            res.status(200)
-                            return res.json({
-                                link: `http://localhost:${PORT}/api/v1/users/${user.id}`,
-                                token
-                            })
-                        })
+                        let auth = {
+                            username: req.body.username,
+                            password: password
+                        }
+                        request({
+                            url: config.AuthApi+"/",
+                            method: "POST",
+                            json: true,
+                            body: auth
+                        }, function (error, response, body) {
+                            if (error) {
+                                res.status(500)
+                                return res.json({
+                                    err: "An unexpect error happened"
+                                })
+                            }
+                            if (!error && response.statusCode == 200) {
+                                res.status(200)
+                                return res.json({
+                                    link: `http://localhost:${PORT}/api/v1/users/${user.id}`,
+                                    token: body.token
+                                })
+                            } else {
+                                res.status(500)
+                                return res.json('Could not create this user')
+                            }
+                        });
                     })
                 });
             });
@@ -199,9 +226,10 @@ module.exports.delUser = (req, res) => {
             res.status(500)
             return res.json('Could not remove this user :(')
         }
-
-        res.status(204)
-        res.end()
+        res.status(200)
+        res.json({
+            success: true
+        })
     })
 }
 
@@ -281,7 +309,6 @@ module.exports.updateUser = (req, res) => {
                 }
             })
         } else if (user.email != req.body.email && user.username == req.body.username) {
-            console.log("test");
             User.findOne({
                 'email': req.body.email
             }, (err, user) => {
@@ -386,7 +413,6 @@ module.exports.updateUser = (req, res) => {
 module.exports.updatePass = (req, res) => {
     User.findById(req.params.id, (err, user) => {
         if (err) throw err
-
         user.comparePassword(req.body.password, function (err, isMatch) {
             if (err) throw err
             if (isMatch) {
@@ -395,8 +421,9 @@ module.exports.updatePass = (req, res) => {
                     bcrypt.hash(password, salt, function (err, hash) {
                         user.password = hash
                         user.save()
-                        res.status(204)
+                        res.status(200)
                         return res.json({
+                            success: true,
                             message: "Password updated with success"
                         })
                     })

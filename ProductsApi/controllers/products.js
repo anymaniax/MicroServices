@@ -2,7 +2,7 @@ require('../models/db')
 
 let Product = require('../models/product')
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5003
 	// TODO:
 	// -> Apply point 7 from 
 	// http://blog.mwaysolutions.com/2014/06/05/10-best-practices-for-better-restful-api/
@@ -102,8 +102,7 @@ module.exports.updateProduct = (req, res) => {
 			return res.json('Could not update this product :(')
 		}
 
-		res.status(204)
-		console.log(product)
+		res.status(200)
 		res.json({
 			message: "Product updated with success",
 			product

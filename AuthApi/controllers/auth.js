@@ -1,4 +1,4 @@
-let config = require('../config/dev')
+let config
 if (process.env.DEBUG == 1) {
     config = require('../config/dev')
 } else {

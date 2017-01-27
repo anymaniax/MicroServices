@@ -8,4 +8,5 @@ router.get('/userid', ctrl.requireId)
 router.get('/admin', ctrl.requireAdmin)
 router.get('/check/', ctrl.checkToken)
 
+
 module.exports = router

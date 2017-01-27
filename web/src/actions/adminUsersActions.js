@@ -12,7 +12,7 @@ function userListSuccess(users){
 
 export function fetchUserList(token){
     return function(dispatch){
-        return fetch(`${conf.UserApi}users/`, {
+        return fetch(`${conf.uri}users/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -25,8 +25,12 @@ export function fetchUserList(token){
 
 export function deleteUser(id, token){
     return function(dispatch){
-        return fetch(`${conf.uri}users/${id}?token=${token}`, {
-            method: 'delete'
+        return fetch(`${conf.uri}users/${id}`, {
+            method: 'delete',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'x-access-token': token
+            })
         }).then(response => {
             response.json().then(res => console.log(res))
             dispatch(fetchUserList(token))

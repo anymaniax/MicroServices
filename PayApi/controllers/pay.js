@@ -50,7 +50,7 @@ module.exports.pay = (req, res) => {
                                             error: "Could not create this transaction"
                                         })
                                     }
-                                    let paypal = Paypal.init(InfoPaypal.username, InfoPaypal.password, InfoPaypal.signature, 'http://localhost:5003/api/v1/pay/valid/' + transaction._id, 'http://localhost:5003/api/v1/pay/valid/' + transaction._id, true);
+                                    let paypal = Paypal.init(InfoPaypal.username, InfoPaypal.password, InfoPaypal.signature, 'http://localhost:5004/api/v1/pay/valid/' + transaction._id, 'http://localhost:5004/api/v1/pay/valid/' + transaction._id, true);
                                     paypal.pay(transaction._id, transaction.amount, desc, 'EUR', true, function (err, url) {
                                         if (err) {
                                             console.log(err)
@@ -59,7 +59,7 @@ module.exports.pay = (req, res) => {
                                                 message: 'Payement failed.'
                                             })
                                         }
-
+                                        res.status(200)
                                         res.json({
                                             success: true,
                                             url: url
@@ -170,31 +170,6 @@ module.exports.valid = (req, res) => {
     }
 }
 
-module.exports.getById = (req, res) => {
-    Pay.findOne({
-        "_id": req.params.id
-    }, (err, pay) => {
-        if (!pay) {
-            res.status(404)
-            res.json({
-                err: "No payement found :("
-            })
-        }
-
-        if (err) {
-            res.status(500)
-            return res.json({
-                err: "An unexpect error happened"
-            })
-        }
-
-        let ByPay = {
-            cart: pay.cart
-        }
-        return res.json(ByPay)
-    })
-}
-
 
 module.exports.getByUserPayement = (req, res) => {
     Pay.find({
@@ -223,7 +198,7 @@ module.exports.getByUserPayement = (req, res) => {
             allPay.push(ByPay)
         }
         console.log(allPay)
-        res.status(202)
+        res.status(200)
         return res.json(allPay)
     })
 }
@@ -252,7 +227,7 @@ module.exports.getAllPayement = (req, res) => {
             }
             allPay.push(ByPay)
         }
-        res.status(202)
+        res.status(200)
         return res.json(allPay)
     })
 }
@@ -287,7 +262,8 @@ module.exports.getById = (req, res) => {
                         quantity: item.quantity
                     })
                     if (i == cartLength) {
-                        res.status(202)
+                        res.status(200)
+                        console.log(newCart);
                         return res.json({
                             cart: newCart
                         })

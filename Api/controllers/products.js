@@ -83,6 +83,7 @@ module.exports.addProduct = (req, res) => {
 
 module.exports.delProduct = (req, res) => {
     let headers = {
+        'content-type': 'application/json',
         'x-access-token': req.headers['x-access-token']
     }
     request({
@@ -114,6 +115,10 @@ module.exports.delProduct = (req, res) => {
 }
 
 module.exports.updateProduct = (req, res) => {
+    let headers = {
+        'content-type': 'application/json',
+        'x-access-token': req.headers['x-access-token']
+    }
     request({
         url: config.ProductApi + "products/" + req.params.id,
         method: "PUT",
@@ -128,9 +133,10 @@ module.exports.updateProduct = (req, res) => {
             })
         }
         if (!error && response.statusCode == 200) {
-            res.status(201)
-            res.send({
-                body
+            res.status(204)
+            res.json({
+                message: body.message,
+                product: body.product
             })
         } else {
             res.status(500)
@@ -140,7 +146,7 @@ module.exports.updateProduct = (req, res) => {
 }
 
 module.exports.search = (req, res) => {
-    request.get(config.ProductApi + "products/" + req.params.query, function (error, response, body) {
+    request.get(config.ProductApi + "products/search/" + req.params.query, function (error, response, body) {
         if (error) {
             res.status(500)
             return res.json({

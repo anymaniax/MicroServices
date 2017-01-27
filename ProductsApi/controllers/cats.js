@@ -3,7 +3,7 @@ require('../models/db')
 let Cat = require('../models/cat')
 let Product = require('../models/product')
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5003
 
 module.exports.getAll = (req, res) => {
 	Cat.find((err, cats) => {

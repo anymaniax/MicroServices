@@ -65,7 +65,6 @@ process.on('SIGTERM', () => {
 Salt = config.salt
 InfoPaypal = config.paypal
 AuthApi = config.AuthApi
-Password= config.password
 
 //Schemas
 User = require('./user')
